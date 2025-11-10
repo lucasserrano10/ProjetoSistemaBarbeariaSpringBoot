@@ -1,0 +1,25 @@
+package com.example.barbearia_pai.dto;
+
+import com.example.barbearia_pai.domain.endereco.Endereco;
+import jakarta.persistence.Embedded;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record InfosCadastroBarbeiro(
+        @NotNull
+        String nome,
+        @NotBlank
+        @Email
+        String email,
+        @NotBlank
+        String telefone,
+        String especialidade,
+        @NotNull
+        @Valid
+        @Embedded
+        DadosEndereco endereco
+) {
+
+}

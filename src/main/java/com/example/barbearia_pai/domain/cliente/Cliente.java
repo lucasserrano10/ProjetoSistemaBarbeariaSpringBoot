@@ -35,6 +35,7 @@ public class Cliente {
     private String telefone;
 
     @Valid
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
 }
