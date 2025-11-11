@@ -5,7 +5,6 @@ import com.example.barbearia_pai.domain.atendimento.AtendimentoRepository;
 import com.example.barbearia_pai.domain.atendimento.AtendimentoService;
 import com.example.barbearia_pai.dto.atendimento.DadosDetalhamentoAtendimento;
 import com.example.barbearia_pai.dto.atendimento.InfosCadastroAtendimento;
-import com.example.barbearia_pai.dto.atendimento.InfosDesmarcarAtendimento;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,16 +42,13 @@ public class AtendimentoController {
         return ResponseEntity.ok(page);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity desmarcarAtendimento(@Valid @RequestBody InfosDesmarcarAtendimento infosDesmarcarAtendimento){
-        boolean exists = atendimentoRepository.existsById(infosDesmarcarAtendimento.id());
-
-        if (!exists) {
+    public ResponseEntity desmarcarAtendimento(@PathVariable Long id) {
+        if (!atendimentoRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-
-        atendimentoRepository.deleteById(infosDesmarcarAtendimento.id());
+        atendimentoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
