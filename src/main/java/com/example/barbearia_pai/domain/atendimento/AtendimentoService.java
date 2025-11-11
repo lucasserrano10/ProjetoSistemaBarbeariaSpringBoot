@@ -1,5 +1,6 @@
 package com.example.barbearia_pai.domain.atendimento;
 
+import com.example.barbearia_pai.dto.atendimento.InfosDesmarcarAtendimento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

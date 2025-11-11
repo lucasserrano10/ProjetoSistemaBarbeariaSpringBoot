@@ -5,6 +5,7 @@ import com.example.barbearia_pai.domain.atendimento.AtendimentoRepository;
 import com.example.barbearia_pai.domain.atendimento.AtendimentoService;
 import com.example.barbearia_pai.dto.atendimento.DadosDetalhamentoAtendimento;
 import com.example.barbearia_pai.dto.atendimento.InfosCadastroAtendimento;
+import com.example.barbearia_pai.dto.atendimento.InfosDesmarcarAtendimento;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -41,4 +42,18 @@ public class AtendimentoController {
         var page = atendimentoRepository.findAll(paginacao).map(DadosDetalhamentoAtendimento::new);
         return ResponseEntity.ok(page);
     }
+
+    @DeleteMapping
+    @Transactional
+    public ResponseEntity desmarcarAtendimento(@Valid @RequestBody InfosDesmarcarAtendimento infosDesmarcarAtendimento){
+        boolean exists = atendimentoRepository.existsById(infosDesmarcarAtendimento.id());
+
+        if (!exists) {
+            return ResponseEntity.notFound().build();
+        }
+
+        atendimentoRepository.deleteById(infosDesmarcarAtendimento.id());
+        return ResponseEntity.noContent().build();
+    }
+
 }
