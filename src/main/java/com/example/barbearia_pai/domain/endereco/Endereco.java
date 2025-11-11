@@ -1,6 +1,5 @@
 package com.example.barbearia_pai.domain.endereco;
 
-import com.example.barbearia_pai.dto.DadosEndereco;
 import jakarta.persistence.*;
 import lombok.*;
 

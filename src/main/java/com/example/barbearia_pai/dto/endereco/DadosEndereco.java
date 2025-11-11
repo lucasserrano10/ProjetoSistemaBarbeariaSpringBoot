@@ -1,6 +1,5 @@
-package com.example.barbearia_pai.dto;
+package com.example.barbearia_pai.dto.endereco;
 
-import com.example.barbearia_pai.domain.endereco.Endereco;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

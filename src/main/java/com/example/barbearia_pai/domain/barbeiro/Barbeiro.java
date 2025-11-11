@@ -1,7 +1,7 @@
 package com.example.barbearia_pai.domain.barbeiro;
 
 import com.example.barbearia_pai.domain.endereco.Endereco;
-import com.example.barbearia_pai.dto.InfosCadastroBarbeiro;
+import com.example.barbearia_pai.dto.barbeiro.InfosCadastroBarbeiro;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -9,7 +9,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -84,5 +83,9 @@ public class Barbeiro {
 
     public Endereco getEndereco() {
         return endereco;
+    }
+
+    public Barbeiro(Long id) {
+        this.id = id;
     }
 }

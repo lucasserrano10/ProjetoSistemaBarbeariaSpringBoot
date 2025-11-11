@@ -1,4 +1,4 @@
-package com.example.barbearia_pai.dto;
+package com.example.barbearia_pai.dto.barbeiro;
 
 import com.example.barbearia_pai.domain.barbeiro.Barbeiro;
 
