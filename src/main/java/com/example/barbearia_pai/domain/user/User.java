@@ -15,7 +15,6 @@ import java.util.List;
 @Table(name = "usuarios")
 @Entity(name = "usuarios")
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode()
 public class User implements UserDetails {
@@ -44,6 +43,18 @@ public class User implements UserDetails {
 
     public User(){
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public UserRole getRole() {
+        return role;
     }
 
     @Override

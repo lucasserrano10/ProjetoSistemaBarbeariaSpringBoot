@@ -4,6 +4,8 @@ import com.example.barbearia_pai.domain.user.AuthenticationDTO;
 import com.example.barbearia_pai.domain.user.User;
 import com.example.barbearia_pai.domain.user.UserRepository;
 import com.example.barbearia_pai.domain.user.RegisterDTO;
+import com.example.barbearia_pai.dto.token.LoginResponseDTO;
+import com.example.barbearia_pai.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +31,17 @@ public class AutenticacaoController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(),data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")

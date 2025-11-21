@@ -83,6 +83,11 @@
 				<artifactId>flyway-mysql</artifactId>
 				<version>11.13.2</version>  <!-- mesma versão ou compatível com flyway-core -->
 			</dependency>
+			<dependency>
+				<groupId>com.auth0</groupId>
+				<artifactId>java-jwt</artifactId>
+				<version>4.5.0</version>
+			</dependency>
 		</dependencies>
 
 		<build>
