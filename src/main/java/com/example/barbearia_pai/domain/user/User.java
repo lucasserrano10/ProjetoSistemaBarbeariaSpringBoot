@@ -15,7 +15,6 @@ import java.util.List;
 @Table(name = "usuarios")
 @Entity(name = "usuarios")
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode()
 public class User implements UserDetails {
     @Id
@@ -26,8 +25,19 @@ public class User implements UserDetails {
 
     private String password;
 
+    private String nome;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+
+    public User(RegisterDTO dto) {
+        this.login = dto.login();
+        this.nome = dto.nome();
+        this.password = dto.password();
+        this.role = dto.role();
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -35,9 +45,40 @@ public class User implements UserDetails {
         else return  List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
+    public User(String login, String password, String nome, UserRole role) {
+        this.login = login;
+        this.password = password;
+        this.nome = nome;
+        this.role = role;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
     public User (String login, String password, UserRole role){
         this.login = login;
         this.password = password;
+        this.role = role;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
